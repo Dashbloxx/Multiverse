@@ -16,6 +16,7 @@ float x = 0.0f, z = 5.0f;
 float deltaAngle = 0.0f;
 float deltaMove = 0;
 int xOrigin = -1;
+lua_State *LuaInstance;
 
 int main(int argc, char **argv)
 {
@@ -26,10 +27,10 @@ int main(int argc, char **argv)
 	glutCreateWindow("Multiverse 1.1");
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
-	
-	lua_State *L = luaL_newstate();
-  	luaL_openlibs(L);
-  	luaL_dofile(L, "./scripts/main.lua");
+
+	LuaInstance = luaL_newstate();
+  	luaL_openlibs(LuaInstance);
+  	luaL_dofile(LuaInstance, argv[1]);
 
 	glutIdleFunc(renderScene);
 	glutIgnoreKeyRepeat(1);
@@ -40,6 +41,6 @@ int main(int argc, char **argv)
 	glutMotionFunc(mouseMove);
 	glEnable(GL_DEPTH_TEST);
 	glutMainLoop();
-	lua_close(L);
+	lua_close(LuaInstance);
 	return 1;
 }

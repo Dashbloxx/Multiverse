@@ -9,4 +9,4 @@ arch-dependencies:
 	sudo pacman -S glfw-x11
 	sudo pacman -S lua
 test:
-	./bin/multiverse
+	./bin/multiverse ./scripts/main.lua
