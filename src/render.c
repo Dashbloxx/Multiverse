@@ -65,8 +65,6 @@ void renderScene(void)
 	 */
 	lua_getglobal(LuaInstance, "render");
 	lua_call(LuaInstance, 0, 0);
-	drawSelection(0, 1, 0);
-	drawSelection(1, 1, 0);
 	/*
 	 * Here, we end the drawing.
 	 */

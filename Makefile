@@ -7,6 +7,6 @@ ubuntu-dependencies:
 	sudo apt-get install lua-devel
 arch-dependencies:
 	sudo pacman -S glfw-x11
-	sudo pacman -S lua
+	sudo pacman -S lua51
 test:
 	./bin/multiverse ./scripts/main.lua

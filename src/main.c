@@ -7,6 +7,7 @@
 #include <lua5.1/lauxlib.h>
 
 #include "./camera.h"
+#include "./objects.h"
 #include "./render.h"
 #include "./keys.h"
 
@@ -24,13 +25,17 @@ int main(int argc, char **argv)
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100,100);
 	glutInitWindowSize(320,320);
-	glutCreateWindow("Multiverse 1.1");
+	glutCreateWindow("Multiverse 1.1.1");
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
 
 	LuaInstance = luaL_newstate();
   	luaL_openlibs(LuaInstance);
+	lua_register(LuaInstance, "draw_selection", drawSelection);
+	lua_register(LuaInstance, "draw_cube", drawCube);
   	luaL_dofile(LuaInstance, argv[1]);
+	lua_getglobal(LuaInstance, "main");
+	lua_call(LuaInstance, 0, 0);
 
 	glutIdleFunc(renderScene);
 	glutIgnoreKeyRepeat(1);

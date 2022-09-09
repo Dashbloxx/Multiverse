@@ -2,13 +2,17 @@ print("Hi")
 print("I don't know what to say here...")
 
 
-local x = 0
+function main()
+	--[[
+		Anything inside this function is executed at the
+		start of the game.
+	]]--
+end
 
 function render()
 	--[[
 		Anything inside this function is executed for each
 		frame...
 	]]--
-	x = x + 1
-	print(x)
+	draw_cube(1, 1, 1)
 end

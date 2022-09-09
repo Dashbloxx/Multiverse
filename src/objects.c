@@ -1,10 +1,13 @@
 #include <stdlib.h>
 #include <math.h>
 #include <GL/glut.h>
+#include <lua5.1/lua.h>
+#include <lua5.1/lualib.h>
+#include <lua5.1/lauxlib.h>
 
 #include "./objects.h"
 
-void drawSelection(float x_position, float y_position, float z_position)
+/*void drawSelection(float x_position, float y_position, float z_position)
 {
 	glScalef(1.0, 1.0, 1.0);
 	glTranslatef(x_position, y_position, z_position);
@@ -14,6 +17,28 @@ void drawSelection(float x_position, float y_position, float z_position)
 
 void drawCube(float x_position, float y_position, float z_position)
 {
+	glScalef(1.0, 1.0, 1.0);
+	glTranslatef(x_position, y_position, z_position);
+	glColor3f(255, 0, 0);
+	glutSolidCube(1.0);
+}*/
+
+void drawSelection(lua_State *L)
+{
+	int x_position = luaL_checknumber (L, 1);
+    int y_position = luaL_checknumber (L, 2);
+	int z_position = luaL_checknumber (L, 3);
+	glScalef(1.0, 1.0, 1.0);
+	glTranslatef(x_position, y_position, z_position);
+	glColor3f(255, 0, 0);
+	glutWireCube(1.0);
+}
+
+void drawCube(lua_State *L)
+{
+	int x_position = luaL_checknumber (L, 1);
+    int y_position = luaL_checknumber (L, 2);
+	int z_position = luaL_checknumber (L, 3);
 	glScalef(1.0, 1.0, 1.0);
 	glTranslatef(x_position, y_position, z_position);
 	glColor3f(255, 0, 0);
