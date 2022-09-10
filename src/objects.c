@@ -23,10 +23,28 @@ void drawCube(float x_position, float y_position, float z_position)
 	glutSolidCube(1.0);
 }*/
 
+void drawTriangle(lua_State *L)
+{
+	int x_position_of_vertices_a = luaL_checknumber (L, 1);
+	int y_position_of_vertices_a = luaL_checknumber (L, 2);
+	int z_position_of_vertices_a = luaL_checknumber (L, 3);
+	int x_position_of_vertices_b = luaL_checknumber (L, 4);
+	int y_position_of_vertices_b = luaL_checknumber (L, 5);
+	int z_position_of_vertices_b = luaL_checknumber (L, 6);
+	int x_position_of_vertices_c = luaL_checknumber (L, 7);
+	int y_position_of_vertices_c = luaL_checknumber (L, 8);
+	int z_position_of_vertices_c = luaL_checknumber (L, 9);
+	unsigned int VBO;
+	glGenBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		
+}
+
 void drawSelection(lua_State *L)
 {
 	int x_position = luaL_checknumber (L, 1);
-    int y_position = luaL_checknumber (L, 2);
+	int y_position = luaL_checknumber (L, 2);
 	int z_position = luaL_checknumber (L, 3);
 	glPushMatrix();
 	glScalef(1.0, 1.0, 1.0);
@@ -39,10 +57,10 @@ void drawSelection(lua_State *L)
 void drawCube(lua_State *L)
 {
 	int x_position = luaL_checknumber (L, 1);
-    int y_position = luaL_checknumber (L, 2);
+	int y_position = luaL_checknumber (L, 2);
 	int z_position = luaL_checknumber (L, 3);
 	int r = luaL_checknumber (L, 4);
-    int g = luaL_checknumber (L, 5);
+	int g = luaL_checknumber (L, 5);
 	int b = luaL_checknumber (L, 6);
 	glPushMatrix();
 	glScalef(1.0, 1.0, 1.0);
@@ -55,6 +73,4 @@ void drawCube(lua_State *L)
 /*
  * Still learning how GPUs and OpenGL work, so I will be actually completing this function soon...
  */
-void drawCubeWithTexture(float x_position, float y_position, float z_position, const char *top_texture_filename, const char *bottom_texture_filename, const char *left_texture_filename, const char *right_texture_filename, const char *front_texture_filename, const char *back_texture_filename)
-{
-}
+void drawCubeWithTexture(float x_position, float y_position, float z_position, const char *top_texture_filename, const char *bottom_texture_filename, const char *left_texture_filename, const char *right_texture_filename, const char *front_texture_filename, const char *back_texture_filename) { }
