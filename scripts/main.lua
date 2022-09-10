@@ -16,4 +16,5 @@ function render()
 		it could really lower the execution speed of the game.
 	]]--
 	draw_cube(1, 1, 1, 255, 255, 255)
+	draw_cube(1, 2, 1, 255, 0, 255)
 end
