@@ -33,6 +33,8 @@ int main(int argc, char **argv)
   	luaL_openlibs(LuaInstance);
 	lua_register(LuaInstance, "draw_selection", drawSelection);
 	lua_register(LuaInstance, "draw_cube", drawCube);
+	lua_register(LuaInstance, "draw_sphere", drawSphere);
+	lua_register(LuaInstance, "draw_triangle", drawTriangle);
   	luaL_dofile(LuaInstance, argv[1]);
 	lua_getglobal(LuaInstance, "main");
 	lua_call(LuaInstance, 0, 0);

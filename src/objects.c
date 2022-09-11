@@ -23,22 +23,55 @@ void drawCube(float x_position, float y_position, float z_position)
 	glutSolidCube(1.0);
 }*/
 
+void drawSphere(lua_State *L)
+{
+	int x = luaL_checknumber (L, 1);
+	int y = luaL_checknumber (L, 2);
+	int z = luaL_checknumber (L, 3);
+	int r = luaL_checknumber (L, 4);
+	int g = luaL_checknumber (L, 5);
+	int b = luaL_checknumber (L, 6);
+	int w = luaL_checknumber (L, 7);
+	int t = luaL_checknumber (L, 8);
+	int f = luaL_checknumber (L, 9);
+
+	glPushMatrix();
+	glScalef(1.0,1.0,1.0);
+	glTranslatef (x, y, z);
+	glColor3f(r, g, b); 
+	glutSolidSphere(w, t, f);
+	glPopMatrix();
+}
+
 void drawTriangle(lua_State *L)
 {
-	int x_position_of_vertices_a = luaL_checknumber (L, 1);
-	int y_position_of_vertices_a = luaL_checknumber (L, 2);
-	int z_position_of_vertices_a = luaL_checknumber (L, 3);
-	int x_position_of_vertices_b = luaL_checknumber (L, 4);
-	int y_position_of_vertices_b = luaL_checknumber (L, 5);
-	int z_position_of_vertices_b = luaL_checknumber (L, 6);
-	int x_position_of_vertices_c = luaL_checknumber (L, 7);
-	int y_position_of_vertices_c = luaL_checknumber (L, 8);
-	int z_position_of_vertices_c = luaL_checknumber (L, 9);
-	unsigned int VBO;
-	glGenBuffers(1, &VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-		
+	int a_x = luaL_checknumber (L, 1);
+	int a_y = luaL_checknumber (L, 2);
+	int a_z = luaL_checknumber (L, 3);
+	int a_r = luaL_checknumber (L, 4);
+	int a_g = luaL_checknumber (L, 5);
+	int a_b = luaL_checknumber (L, 6);
+	int b_x = luaL_checknumber (L, 7);
+	int b_y = luaL_checknumber (L, 8);
+	int b_z = luaL_checknumber (L, 9);
+	int b_r = luaL_checknumber (L, 10);
+	int b_g = luaL_checknumber (L, 11);
+	int b_b = luaL_checknumber (L, 12);
+	int c_x = luaL_checknumber (L, 13);
+	int c_y = luaL_checknumber (L, 14);
+	int c_z = luaL_checknumber (L, 15);
+	int c_r = luaL_checknumber (L, 16);
+	int c_g = luaL_checknumber (L, 17);
+	int c_b = luaL_checknumber (L, 18);
+
+	glBegin(GL_TRIANGLES);
+	glColor3f(a_r, a_g, a_b);
+	glVertex3f(a_x, a_y, a_z);
+	glColor3f(b_r, b_g, b_b);
+	glVertex3f(b_x, b_y, b_z);
+	glColor3f(c_r, c_g, c_b);
+	glVertex3f(c_x, c_y, c_z);
+	glEnd();
 }
 
 void drawSelection(lua_State *L)
